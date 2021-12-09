@@ -1,16 +1,5 @@
-"""
-Домашнее задание №1
-Функции и структуры данных
-"""
-
-
-def power_numbers():
-    """
-    функция, которая принимает N целых чисел,
-    и возвращает список квадратов этих чисел
-    >>> power_numbers(1, 2, 5, 7)
-    <<< [1, 4, 25, 49]
-    """
+def power_numbers(*args):
+    return [x ** 2 for x in args]
 
 
 # filter types
@@ -19,14 +8,25 @@ EVEN = "even"
 PRIME = "prime"
 
 
-def filter_numbers():
-    """
-    функция, которая на вход принимает список из целых чисел,
-    и возвращает только чётные/нечётные/простые числа
-    (выбор производится передачей дополнительного аргумента)
+def is_prime(lst:list):
+    new_lst = []
+    for i in range(len(lst)):
+        check = 0
+        for j in range(2, lst[i]):
+            if lst[i] % j == 0:
+                check += 1
+        if check == 0:
+            new_lst.append(lst[i])
+    return new_lst
 
-    >>> filter_numbers([1, 2, 3], ODD)
-    <<< [1, 3]
-    >>> filter_numbers([2, 3, 4, 5], EVEN)
-    <<< [2, 4]
-    """
+
+def filter_numbers(l:list, s:str):
+    if s == ODD:
+        return list(filter(lambda x: x % 2 != 0, l))
+    elif s == EVEN:
+        return list(filter(lambda x: x % 2 == 0, l))
+    else:
+        return list(filter(lambda x: x > 1, is_prime(l)))
+
+
+# print(filter_numbers([1, 2, 3, 5, 6, 8, 9, 11, 12, 7], PRIME))
