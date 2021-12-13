@@ -8,23 +8,22 @@ EVEN = "even"
 PRIME = "prime"
 
 
-def is_prime(num):
-    if (num == 0) or (num == 1):
+def is_prime(number):
+    if (number == 0) or (number == 1):
         return False
-    for i in range(2, (num // 2) + 1):
-        if num % i == 0:
+    for i in range(2, (number // 2) + 1):
+        if number % i == 0:
             return False
     return True
 
 
-
-def filter_numbers(l:list, s:str):
-    if s == ODD:
-        return list(filter(lambda x: x % 2 != 0, l))
-    elif s == EVEN:
-        return list(filter(lambda x: x % 2 == 0, l))
+def filter_numbers(numbers_list: list, filter_type: str):
+    if filter_type == ODD:
+        return list(filter(lambda x: x % 2 != 0, numbers_list))
+    elif filter_type == EVEN:
+        return list(filter(lambda x: x % 2 == 0, numbers_list))
     else:
-        return list(filter(lambda x: is_prime(x), l))
+        return list(filter(is_prime, numbers_list))
 
 
-# print(filter_numbers([1, 2, 3, 5, 6, 8, 9, 11, 12, 7], PRIME))
+print(filter_numbers([1, 2, 3, 5, 6, 8, 9, 11, 12, 7], PRIME))
