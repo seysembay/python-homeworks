@@ -1,4 +1,5 @@
-import exceptions
+import homework_02.exceptions as exceptions
+# import exceptions
 
 
 class Vehicle:
@@ -16,11 +17,17 @@ class Vehicle:
             raise exceptions.LowFuelError
 
     def move(self, distance):
-        pass
-
+        max_distance = 0
+        if self.fuel > 0 and self.fuel_consumption > 0:
+            if self.fuel > self.fuel_consumption:
+                max_distance = self.fuel // self.fuel_consumption
+        if distance <= max_distance:
+            self.fuel = self.fuel - distance * self.fuel_consumption
+        else:
+            raise exceptions.NotEnoughFuel
 
 if __name__ == '__main__':
-    car1 = Vehicle(1, 0, 30)
-    print(car1.started)
+    car1 = Vehicle(1, 100, 3)
     car1.start()
+    car1.move(10)
     print(car1.started)
